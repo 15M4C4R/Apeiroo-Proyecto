@@ -11,10 +11,11 @@ def recibir_rendimiento_ubuntu():
     if not data:
         return jsonify({"error": "No se han proporcionado datos"}), 400
     
-    if data.get("vm_id") is "servidor-ubuntu":
+    if data.get("vm_id") == "servidor-ubuntu":
         print("VM Ubuntu")
         print(f'CPU de la VM (Ubuntu): {data.get("cpu_uso")}%')
         print(f'RAM en uso: {data.get("ram_uso")}%')
+        print(f'Almacenamiento en uso: {data.get("almacenamiento_uso")}%')
     
     elif data.get("vm_id") == "servidor-debian":
         print("VM Debian")

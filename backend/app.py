@@ -20,13 +20,13 @@ def recibir_rendimiento_ubuntu():
         
         if vm_id:
             ultimos_datos_vms[vm_id] = data
-            print(f'Últimos datos de la VM {vm_id}: {ultimos_datos_vms[vm_id]}')
-        
+            
         if data.get("vm_id") == "servidor-ubuntu":
             print("VM Ubuntu")
             print(f'CPU de la VM (Ubuntu): {data.get("cpu_uso")}%')
             print(f'RAM en uso: {data.get("ram_uso")}%')
             print(f'Almacenamiento en uso: {data.get("almacenamiento_uso")}%')
+            print(f'Procesos con mayor consumo de memoria: {data.get("procesos")}')
         
         elif data.get("vm_id") == "servidor-debian":
             print("VM Debian")

@@ -17,7 +17,7 @@ export class App implements OnInit {
 
   private subscriptionIntervalo!: Subscription;
 
-  respuesta: any;
+  respuesta = signal<any>(null);
   protected readonly title = signal('frontend');
   ngOnInit() {
     this.subscriptionIntervalo = timer(0, 10000).pipe(
@@ -25,7 +25,7 @@ export class App implements OnInit {
     )
     .subscribe({
       next: (data) => {
-        this.respuesta = data;
+        this.respuesta.set({...data});
         console.log("Datos recibidos de Flask: ", data);
       },
       error: (error) => {

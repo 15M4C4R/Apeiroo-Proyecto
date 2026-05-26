@@ -4,9 +4,9 @@
     <p>Rendimiento de las máquinas virtuales en tiempo real</p>
   </header>
 
-  <div class="tarjetas-grid">
-    @for (vm of respuesta | keyvalue; track vm.key) {
-      @if (vm) {
+  @if (respuesta()) {
+    <div class="tarjetas-grid">
+      @for (vm of respuesta() | keyvalue; track vm.key) {
         <div class="tarjeta-vm">
           <div class="tarjeta-header">
             <h2>{{vm.key}}</h2>
@@ -15,27 +15,32 @@
 
           <div class="tarjeta-body">
             <div class="tarjeta-metrica">
-              <span class="metrica-label">CPU</span>
+              <span class="metrica-label">CONSUMO DE CPU</span>
               <span class="metrica-valor">{{vm.value.cpu_uso}}%</span>
             </div>
             <div class="tarjeta-metrica">
-              <span class="metrica-label">RAM</span>
+              <span class="metrica-label">CONSUMO DE RAM</span>
               <span class="metrica-valor">{{vm.value.ram_uso}}%</span>
             </div>
             <div class="tarjeta-metrica">
-              <span class="metrica-label">DISCO</span>
+              <span class="metrica-label">ESPACIO OCUPADO EN DISCO</span>
               <span class="metrica-valor">{{vm.value.almacenamiento_uso}}%</span>
+            </div>
+            <div class="tarjeta-metrica">
+              <span class="metrica-label">PROCESOS CON MAYOR CONSUMO</span>
+              @for (proceso of vm.value.procesos; track proceso.pid) {
+                <span class="metrica-label">{{proceso.pid}}: {{proceso.memoria_uso}}%</span>
+              }
             </div>
           </div>
         </div>
       }
-      @else {
-        <div class="estado-espera">
-          <p>Esperando datos de las máquinas virtuales...</p>
-        </div>
-      }
-    }
-  </div>  
+    </div>
+  } @else {
+    <div class="estado-espera">
+      <p>Esperando datos de las máquinas virtuales...</p>
+    </div>
+  }
 </div>
 
 <router-outlet></router-outlet>

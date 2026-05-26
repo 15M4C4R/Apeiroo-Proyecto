@@ -4,9 +4,9 @@
     <p>Rendimiento de las máquinas virtuales en tiempo real</p>
   </header>
 
-  @if (respuesta) {
-    <div class="tarjetas-grid">
-      @for (vm of respuesta | keyvalue; track vm.key) {
+  <div class="tarjetas-grid">
+    @for (vm of respuesta | keyvalue; track vm.key) {
+      @if (vm) {
         <div class="tarjeta-vm">
           <div class="tarjeta-header">
             <h2>{{vm.key}}</h2>
@@ -29,12 +29,13 @@
           </div>
         </div>
       }
-    </div>
-  } @else {
-    <div class="estado-espera">
-      <p>Esperando datos de las máquinas virtuales...</p>
-    </div>
-  }
+      @else {
+        <div class="estado-espera">
+          <p>Esperando datos de las máquinas virtuales...</p>
+        </div>
+      }
+    }
+  </div>  
 </div>
 
 <router-outlet></router-outlet>

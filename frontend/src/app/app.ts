@@ -4,7 +4,7 @@ import { RendimientoService } from './core/services/rendimiento.service';
 import { KeyValuePipe } from '@angular/common';
 import { timer, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { Rendimiento } from './core/model/rendimiento.model';
+//import { Rendimiento } from './core/model/rendimiento.model';
 
 @Component({
   selector: 'app-root',
@@ -39,5 +39,4 @@ export class App implements OnInit {
       this.subscriptionIntervalo.unsubscribe();
     }
   }
-
 }

@@ -1,0 +1,49 @@
+# Entornos virtuales
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Dependencias compiladas/caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de empaquetado y distribución
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Archivos de base de datos local
+instance/
+*.db
+*.sqlite
+*.sqlite3
+
+# Variables de entorno y configuraciones secretas
+.env
+.flaskenv
+secrets.json
+config.py
+
+# Registros (Logs)
+*.log
+
+# Archivos de sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

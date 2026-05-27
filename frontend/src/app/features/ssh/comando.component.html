@@ -1,0 +1,38 @@
+<div class="comando-container">
+    <header class="comando-header">
+        <h1>Ejecutar Comando</h1>
+        <p>Ejecuta un comando dentro de la máquina virtual deseada</p>
+    </header>
+
+    <div class="comando-formContainer">
+        <form [formGroup]="formularioComando" (ngSubmit)="mandarComando()">
+            <div class="comando-formGroup">
+                <label for="host">Host / IP: </label>
+                <input type="text" id="host" formControlName="host" placeholder="ej. 192.168.1.50">
+            </div>
+            <div class="comando-formGroup">
+                <label for="usuario">Usuario: </label>
+                <input type="text" id="usuario" formControlName="usuario" placeholder="ej. root">
+            </div>
+            <div class="comando-formGroup">
+                <label for="contraseña">Contraseña: </label>
+                <input type="password" id="contraseña" formControlName="contraseña">
+            </div>
+            <div class="comando-formGroup">
+                <label for="comando">Comando: </label>
+                <input type="text" id="comando" formControlName="comando" placeholder="ej. ls -la">
+            </div>
+
+            <button type="submit" [disabled]="formularioComando.invalid || cargando">
+                {{cargando? 'Ejecutando...' : 'Ejecutar Comando'}}
+            </button>
+        </form>
+    </div>
+
+    <hr>
+    <div class="comando-salida">
+        <h3>Salida:</h3>
+        <pre>{{ salidaTerminal }}</pre>
+    </div>
+
+</div>

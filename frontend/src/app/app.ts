@@ -4,11 +4,12 @@ import { RendimientoService } from './core/services/rendimiento.service';
 import { KeyValuePipe } from '@angular/common';
 import { timer, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { ComandoComponent } from './features/ssh/comando.component';
 //import { Rendimiento } from './core/model/rendimiento.model';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, KeyValuePipe],
+  imports: [RouterOutlet, KeyValuePipe, ComandoComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

@@ -1,0 +1,154 @@
+:host {
+  display: block;
+  min-height: auto;
+  background-color: #111217;
+  color: #cdd9e5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 10px;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.dashboard-header p {
+  margin: 5px 0 0 0;
+  color: #8b949e;
+  font-size: 14px;
+}
+
+.tarjetas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .tarjetas-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tarjeta-vm {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.tarjeta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #21262d;
+  padding-bottom: 10px;
+}
+
+.tarjeta-header h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #58a6ff;
+  text-transform: capitalize;
+}
+
+.estado-online {
+  background-color: #238636;
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.estado-offline {
+  background-color: #8b0f0f;
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.tarjeta-metrica {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  background-color: #0d1117;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.procesos-container {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.lista-procesos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.proceso-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #161b22;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.proceso-pid {
+  color: #8b949e;
+}
+
+.proceso-memoria {
+  color: #ff7b72;
+}
+
+.metrica-label {
+  color: #8b949e;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.metrica-valor {
+  color: #ffffff;
+  font-family: monospace;
+  font-size: 16px;
+}
+
+.estado-espera {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 200px;
+  color: #8b949e;
+  background-color: #161b22;
+  border-radius: 8px;
+  border: 1px dashed #30363d;
+  text-align: center;
+}

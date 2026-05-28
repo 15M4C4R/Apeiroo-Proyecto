@@ -12,4 +12,13 @@ export class RendimientoService {
     obtenerRendimiento(): Observable<any> {
         return this.http.get(this.apiUrl);
     }
+
+    obtenerRendimientoActual(nombre_vm: string): Observable<any> {
+        return this.http.get(this.apiUrl + "/" + nombre_vm + "/actual");
+    }
+
+    obtenerRendimientoHistorico(nombre_vm: string): Observable<any> {
+        return this.http.get(this.apiUrl + "/" + nombre_vm + "/historico");
+    }
+
 }

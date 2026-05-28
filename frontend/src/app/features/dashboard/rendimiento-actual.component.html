@@ -1,0 +1,84 @@
+<div class="dashboard-container">
+    <header class="dashboard-header">
+        <h1>Panel de Monitorización</h1>
+        <p>Rendimiento de las máquinas virtuales en tiempo real</p>
+    </header>
+
+    <div class="tarjetas-grid">
+        @if (rendimientoActualUbuntu()) {
+            <div class="tarjeta-vm">
+                <div class="tarjeta-header">
+                    <h2>Servidor Ubuntu</h2>
+                    @if (esMaquinaOnline(rendimientoActualUbuntu().timestamp)) {
+                        <span class="estado-online">En línea</span>
+                    } @else {
+                        <span class="estado-offline">Fuera de línea</span>
+                    }
+                </div>
+
+                <div class="tarjeta-body">
+                    <div class="tarjeta-metrica">
+                        <span class="metrica-label">CONSUMO DE CPU</span>
+                        <span class="metrica-valor">{{rendimientoActualUbuntu().cpu_uso}}%</span>
+                    </div>
+                    <div class="tarjeta-metrica">
+                        <span class="metrica-label">CONSUMO DE RAM</span>
+                        <span class="metrica-valor">{{rendimientoActualUbuntu().ram_uso}}%</span>
+                    </div>
+                    <div class="tarjeta-metrica">
+                        <span class="metrica-label">ESPACIO OCUPADO EN DISCO</span>
+                        <span class="metrica-valor">{{rendimientoActualUbuntu().almacenamiento_uso}}%</span>
+                    </div>
+                    <div class="tarjeta-metrica">
+                        <span class="metrica-label">PROCESOS CON MAYOR CONSUMO</span>
+                        @for (proceso of rendimientoActualUbuntu().procesos; track proceso.pid) {
+                            <span class="metrica-label">PID:{{proceso.pid}}: {{proceso.memoria_uso}}%</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        } @else {
+            <div class="estado-espera">
+                <p>Esperando datos de la máquina virtual Ubuntu...</p>
+            </div>
+        }
+
+        @if (rendimientoActualDebian()) {
+            <div class="tarjeta-vm">
+                <div class="tarjeta-header">
+                    <h2>Servidor Debian</h2>
+                    @if (esMaquinaOnline(rendimientoActualDebian().timestamp)) {
+                        <span class="estado-online">En línea</span>
+                    } @else {
+                        <span class="estado-offline">Fuera de línea</span>
+                    }
+                </div>
+
+                <div class="tarjeta-body">
+                    <div class="tarjeta-metrica">
+                        <span class="metrica-label">CONSUMO DE CPU</span>
+                        <span class="metrica-valor">{{rendimientoActualDebian().cpu_uso}}%</span>
+                    </div>
+                    <div class="tarjeta-metrica">
+                        <span class="metrica-label">CONSUMO DE RAM</span>
+                        <span class="metrica-valor">{{rendimientoActualDebian().ram_uso}}%</span>
+                    </div>
+                    <div class="tarjeta-metrica">
+                        <span class="metrica-label">ESPACIO OCUPADO EN DISCO</span>
+                        <span class="metrica-valor">{{rendimientoActualDebian().almacenamiento_uso}}%</span>
+                    </div>
+                    <div class="tarjeta-metrica">
+                        <span class="metrica-label">PROCESOS CON MAYOR CONSUMO</span>
+                        @for (proceso of rendimientoActualDebian().procesos; track proceso.pid) {
+                            <span class="metrica-label">PID:{{proceso.pid}}: {{proceso.memoria_uso}}%</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        } @else {
+            <div class="estado-espera">
+                <p>Esperando datos de la máquina virtuale Debian...</p>
+            </div>
+        }
+    </div>
+</div>

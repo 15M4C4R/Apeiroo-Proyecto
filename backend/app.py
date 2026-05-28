@@ -1,45 +1,14 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from ssh import Ssh
+from db.rutas_db import rendimiento_bp
 
 
 app = Flask(__name__)
 CORS(app)
 
-ultimos_datos_vms = {}
+app.register_blueprint(rendimiento_bp)
 
-@app.route('/api/rendimiento/', methods=['POST', 'GET'])
-def recibir_rendimiento_ubuntu():
-    global ultimos_datos_vms
-    
-    if request.method == 'POST':
-        data = request.json
-        
-        if not data:
-            return jsonify({"error": "No se han proporcionado datos"}), 400
-        
-        vm_id = data.get("vm_id")
-        
-        if vm_id:
-            ultimos_datos_vms[vm_id] = data
-            
-        if data.get("vm_id") == "servidor-ubuntu":
-            print("VM Ubuntu")
-            print(f'CPU de la VM (Ubuntu): {data.get("cpu_uso")}%')
-            print(f'RAM en uso: {data.get("ram_uso")}%')
-            print(f'Almacenamiento en uso: {data.get("almacenamiento_uso")}%')
-            print(f'Procesos con mayor consumo de memoria: {data.get("procesos")}')
-        
-        elif data.get("vm_id") == "servidor-debian":
-            print("VM Debian")
-            print(f'CPU de la VM (Debian): {data.get("cpu_uso")}%')
-            print(f'RAM en uso: {data.get("ram_uso")}%')
-        
-        return jsonify({"mensaje": "Datos recibidos correctamente"}), 200
-    
-    elif request.method == 'GET':
-        return jsonify(ultimos_datos_vms), 200
-    
 @app.route('/api/ejecutar-comando/', methods=['POST'])
 def ejecutar_comando():
     data = request.json

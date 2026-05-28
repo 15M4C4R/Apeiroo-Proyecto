@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: db_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes: 
+      - mongo_data:/data/db
+  
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    restart: always
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/app
+  
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    restart: always
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+    env_file:
+      - .env
+    volumes:
+      - ./frontend/src:/app/src
+#Se podria cambia a una carpeta dentro del proyecto (Bind Mounts)
+volumes:
+  mongo_data:

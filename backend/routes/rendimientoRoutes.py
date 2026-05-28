@@ -1,10 +1,7 @@
-import datetime
-from flask import Blueprint, jsonify, request
-from db.db import get_db
-from backend.controller.rendimientoController import obtener_rendimiento_actual, obtener_rendimiento_historico, procesar_rendimiento
+from flask import Blueprint, request
+from backend.controller.rendimientoController import *
 
 rendimiento_bp = Blueprint('rendimiento', __name__)
-db = get_db()
 
 @rendimiento_bp.route('/api/rendimiento/', methods=['POST'])
 def recibir_rendimiento():

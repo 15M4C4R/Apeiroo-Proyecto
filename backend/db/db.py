@@ -27,4 +27,6 @@ def get_db():
                     'granularity': 'minutes'
                 }
             )
+        elif 'configuracion' not in _db.list_collection_names():
+            _db.create_collection()
     return _db

@@ -1,4 +1,7 @@
-from backend.db import db
+from db import get_db
+
+db = get_db()
+
 def insertar_rendimiento(rendimiento):
     db["rendimiento"].insert_one(rendimiento)
     

@@ -15,7 +15,7 @@ def obtener_configuracion():
         }
         insertar_configuracion(configuracion)
     
-    return configuracion
+    return configuracion, 200
 
 def guardar_configuracion(configuracion):
     
@@ -24,4 +24,4 @@ def guardar_configuracion(configuracion):
     if not configuracion:
         return jsonify({"error": "No se ha podido actualizar la configuracion"}), 500
      
-    return jsonify({"mensaje": "Configuracion actualizada correctamente"})
+    return jsonify({"mensaje": "Configuracion actualizada correctamente"}), 200

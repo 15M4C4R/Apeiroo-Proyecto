@@ -1,6 +1,6 @@
 import datetime
-from backend.utils.alert import send_alert
-from db import get_db
+from utils.alert import send_alert
+from db.db import get_db
 
 db = get_db()
 

@@ -1,0 +1,117 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: #111217;
+  color: #cdd9e5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+}
+
+.config-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.config-header {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 10px;
+}
+
+.config-header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.config-header p {
+  margin: 5px 0 0 0;
+  color: #8b949e;
+  font-size: 14px;
+}
+
+.config-formContainer {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.config-formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.config-formGroup label {
+  color: #8b949e;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.config-formGroup input {
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  color: #ffffff;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.config-formGroup input::placeholder {
+  color: #484f58;
+}
+
+.config-formGroup input:focus {
+  outline: none;
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3);
+}
+
+/* --- CLASE NUEVA PARA LOS ERRORES DE VALIDACIÓN --- */
+.error {
+  margin-top: 6px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.error small {
+  /* He reemplazado tu color en línea por una variable CSS equivalente pero con mejor contraste para fondos oscuros */
+  color: #ff7b72; 
+  font-weight: 500;
+  font-size: 12.5px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* -------------------------------------------------- */
+
+button[type="submit"] {
+  background-color: #238636;
+  color: #ffffff;
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover:not([disabled]) {
+  background-color: #2ea043;
+}
+
+button[type="submit"][disabled] {
+  background-color: #21262d;
+  color: #8b949e;
+  border-color: #30363d;
+  cursor: not-allowed;
+  opacity: 0.8;
+}

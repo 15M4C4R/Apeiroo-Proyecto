@@ -1,0 +1,52 @@
+<div class="config-container">
+    <header class="config-header">
+        <h1>Configuración</h1>
+        <p>Configuración de las alertas de seguridad</p>
+    </header>
+
+    <div class="config-formContainer">
+
+        <form [formGroup]="configForm" (ngSubmit)="actualizar()">
+            <div class="config-formGroup">
+                <label for="umbral_cpu">Rendimiento CPU: </label>
+                <input type="number" id="umbral_cpu" formControlName="umbral_cpu" min="0" max="100" placeholder="ej. 80%">
+                <div *ngIf="configForm.get('umbral_cpu')?.errors?.['max'] || configForm.get('umbral_cpu')?.errors?.['min']" class="error">
+                    <small style="color: rgb(158, 0, 0);">El porcentaje debe ser un valor entre 0 y 100.</small>
+                </div>
+            </div>
+            <div class="config-formGroup">
+                <label for="umbral_ram">Rendimiento RAM: </label>
+                <input type="number" id="umbral_ram" formControlName="umbral_ram" min="0" max="100" placeholder="ej. 80%">
+                <div *ngIf="configForm.get('umbral_ram')?.errors?.['max'] || configForm.get('umbral_ram')?.errors?.['min']" class="error">
+                    <small style="color: rgb(158, 0, 0);">El porcentaje debe ser un valor entre 0 y 100.</small>
+                </div>
+            </div>
+            <div class="config-formGroup">
+                <label for="umbral_almacenamiento">Ocupación de almacenamiento: </label>
+                <input type="number" id="umbral_almacenamiento" formControlName="umbral_almacenamiento" min="0" max="100" placeholder="ej. 80%">
+                <div *ngIf="configForm.get('umbral_almacenamiento')?.errors?.['max'] || configForm.get('umbral_almacenamiento')?.errors?.['min']" class="error">
+                    <small style="color: rgb(158, 0, 0);">El porcentaje debe ser un valor entre 0 y 100.</small>
+                </div>    
+            </div>
+            <div class="config-formGroup">
+                <label for="minutos_tolerancia">Minutos de tolerancia: </label>
+                <input type="number" id="minutos_tolerancia" formControlName="minutos_tolerancia" min="1" placeholder="ej. 5 minutos">
+                <div *ngIf="configForm.get('minutos_tolerancia')?.errors?.['min']" class="error">
+                    <small style="color: rgb(158, 0, 0);">El valor debe ser mayor o igual a 1.</small>
+                </div>
+            </div>
+            <div class="config-formGroup">
+                <label for="correo_destino">Correo de destino: </label>
+                <input type="email" id="correo_destino" formControlName="correo_destino" placeholder="ej. ejemplo@gmail.com">
+                <div *ngIf="configForm.get('correo_destino')?.errors?.['email']" class="error">
+                    <small style="color: rgb(158, 0, 0);">El correo debe ser valido.</small>
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="configForm.invalid">
+                {{configForm.invalid? 'Actualizando...': 'Actualizar Configuración'}}
+            </button>
+
+        </form>
+    </div>
+</div>

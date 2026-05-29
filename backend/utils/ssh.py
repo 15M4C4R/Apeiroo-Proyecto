@@ -1,7 +1,12 @@
+import io
+import os
 import paramiko
-import sys 
 
 class Ssh:
+    
+    DESTINO = os.environ.get('DESTINO_SCRIPT_RENDIMIENTO')
+    ORIGEN = os.environ.get('ORIGEN_SCRIPT_RENDIMIENTO')
+    
     def __init__(self):
         self.host = ""
         self.username = ""
@@ -36,19 +41,37 @@ class Ssh:
         except Exception as e:
             return False, f"Error al ejecutar el comando: {str(e)}"
     
-    def enviar_archivo(self, origen, destino):
+    def enviar_archivo(self, contenido_str, destino):
         try: 
             sftp = self.client.open_sftp()
-            sftp.put(origen, destino)
+            archivo_memoria = io.BytesIO(contenido_str.encode('utf-8'))
+            sftp.putfo(archivo_memoria, destino)
             sftp.close()
             return True, "Archivo enviado exitosamente"
         except Exception as e:
             return False, f"Error al enviar archivo: {str(e)}" 
     
-    def ejecutar_atomico(self, host, usuario, contraseña, comando, ):
+    def ejecutar_atomico(self, host, usuario, contraseña, comando):
         exito_conexion, msj_conexion = self.conectar(host, usuario, contraseña)
         if not exito_conexion:
             return {"exito": False, "mensaje": msj_conexion}
         exito_ejecucion, msj_ejecucion = self.ejecutar(comando)
         self.desconectar()
         return {"exito": exito_ejecucion, "mensaje": msj_ejecucion}
+
+    def nueva_vm(self, vm_id, host, usuario, contraseña, origen):
+        exito_conexion, msj_conexion = self.conectar(host, usuario, contraseña)
+        if not exito_conexion:
+            return {"exito": False, "mensaje": msj_conexion}
+        try:
+            with open(origen, 'r', encoding='utf-8') as f:
+                script_original = f.read()
+            script_listo = script_original.replace('"{VM_ID_PLACEHOLDER}"', f'"{vm_id}"')
+            exito_envio, msj_envio = self.enviar_archivo(script_listo, self.DESTINO) 
+        
+        except Exception as e:
+            self.desconectar()
+            return {"exito": False, "mensaje": f"Error al enviar el script: {str(e)}"}
+
+        self.desconectar()
+        return {"exito": exito_envio, "mensaje": msj_envio}

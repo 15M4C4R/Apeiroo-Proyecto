@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from backend.controller.rendimientoController import *
+from controller.rendimientoController import *
 
 rendimiento_bp = Blueprint('rendimiento', __name__)
 

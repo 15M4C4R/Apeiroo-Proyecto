@@ -14,7 +14,7 @@ export interface DatosComando {
 })
 export class EjecutarService {
     private http = inject(HttpClient)
-    private apiUrl = 'http://172.30.2.158:5000/api/ejecutar-comando/';
+    private apiUrl = 'http://localhost:5000/api/ejecutar-comando/';
 
     ejecutar(datos: DatosComando): Observable<any> {
         return this.http.post(this.apiUrl, datos);

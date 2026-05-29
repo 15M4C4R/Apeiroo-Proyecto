@@ -3,12 +3,12 @@ from controller.configuracionController import *
 
 configuracion_bp = Blueprint('configuracion', __name__)
 
-@configuracion_bp.route('/api/configuracion/', methods=['GET'])
+@configuracion_bp.route('/api/configuracion', methods=['GET'])
 def enviar_configuracion():
     
     return obtener_configuracion()
 
-@configuracion_bp.route('/api/configuracion/', methods=["PUT"])
+@configuracion_bp.route('/api/configuracion', methods=["PUT"])
 def recibir_configuracion():
     
     data = request.json

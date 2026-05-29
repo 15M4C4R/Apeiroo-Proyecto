@@ -1,5 +1,5 @@
 from flask import jsonify
-from backend.utils.ssh import Ssh
+from utils.ssh import Ssh
 
 def ejecutar_comando(data):
     if not data:

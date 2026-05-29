@@ -1,7 +1,7 @@
 import datetime
 from flask import jsonify
-from backend.db.rendimientoDB import *
-from backend.utils.condiciones_alerta import comprobar_alertas
+from db.rendimientoDB import *
+from utils.condiciones_alerta import comprobar_alertas
 
 def procesar_rendimiento(data):
     

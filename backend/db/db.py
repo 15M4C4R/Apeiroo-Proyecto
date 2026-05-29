@@ -6,9 +6,9 @@ _db = None
 def get_db():
     global _client, _db
     if _client is None:
-        _client = MongoClient('mongodb://db_mongo:27017/')
+        _client = MongoClient('mongodb://mongodb:27017/')
         _db = _client['apeiroo_db']
-        
+        """
         if 'rendimiento' not in _db.list_collection_names():
             _db.create_collection(
                 'rendimiento',
@@ -18,7 +18,7 @@ def get_db():
                     'granularity': 'seconds'
                 }
             )
-        elif 'estado_alerta' not in _db.list_collection_names():
+        if 'estado_alerta' not in _db.list_collection_names():
             _db.create_collection(
                 'estado_alerta',
                 timeseries = {
@@ -27,6 +27,7 @@ def get_db():
                     'granularity': 'minutes'
                 }
             )
-        elif 'configuracion' not in _db.list_collection_names():
-            _db.create_collection()
+        if 'configuracion' not in _db.list_collection_names():
+            _db.create_collection('configuracion')
+        """
     return _db
